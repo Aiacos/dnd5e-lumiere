@@ -28,6 +28,7 @@ import { sunRayEnd } from "../core/sun.mjs";
 import { MODULE_ID, setting } from "../settings.mjs";
 import { groundOf, heightAboveGround } from "./elevation.mjs";
 import { shadowTexture } from "./shadow-texture.mjs";
+import { tokenDisplaySize } from "./token-size.mjs";
 import { currentSun } from "./sun.mjs";
 
 const SORT_LAYER = foundry.canvas.groups.PrimaryCanvasGroup.SORT_LAYERS.TOKENS - 2;
@@ -50,7 +51,7 @@ export function syncCastShadows(token) {
 
   const picks = mesh.visible ? pickLights(candidates(token), CAST_DEFAULTS.maxShadows) : [];
   const grid = { distance: canvas.grid.distance, size: canvas.grid.size };
-  const { width, height } = token.document.getSize();
+  const { width, height } = tokenDisplaySize(token);
   const ground = groundOf(token.document);
   const { x, y } = token.center;
   const shape = {

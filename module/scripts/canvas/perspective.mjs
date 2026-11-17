@@ -13,6 +13,7 @@ import { overlaps, perspectiveScale } from "../core/perspective.mjs";
 import { setting } from "../settings.mjs";
 import { referenceElevation } from "./elevation.mjs";
 import { facingScale } from "./facing.mjs";
+import { tokenDisplaySize } from "./token-size.mjs";
 import { visualState } from "./state.mjs";
 
 /** Tokens plus hauts que la référence : ce sont les seuls qui peuvent s'estomper. */
@@ -86,7 +87,7 @@ function coversLowerToken(token) {
 }
 
 function disc(token) {
-  const { width, height } = token.document.getSize();
+  const { width, height } = tokenDisplaySize(token);
   const { x, y } = token.center;
   return { x, y, r: Math.min(width, height) / 2 };
 }

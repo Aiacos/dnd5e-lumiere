@@ -15,6 +15,7 @@ import { shadowResponse } from "../core/hover.mjs";
 import { MODULE_ID, setting } from "../settings.mjs";
 import { shadowTexture } from "./shadow-texture.mjs";
 import { groundOf } from "./elevation.mjs";
+import { tokenDisplaySize } from "./token-size.mjs";
 import { visualState } from "./state.mjs";
 
 const SORT_LAYER = foundry.canvas.groups.PrimaryCanvasGroup.SORT_LAYERS.TOKENS - 1;
@@ -40,7 +41,7 @@ export function syncContactShadow(token) {
     shadows.set(token, shadow);
   }
 
-  const { width, height } = token.document.getSize();
+  const { width, height } = tokenDisplaySize(token);
   const geom = contactShadowGeometry({ width, height }, {
     size: setting("contactSize"),
     opacity: setting("contactOpacity")
